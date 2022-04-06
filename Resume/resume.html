@@ -272,9 +272,8 @@
     <script src="scripts/aos.js?ver=1.2.0"></script>
     <script src="scripts/main.js?ver=1.2.0"></script>
     <script src="scripts/email.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
     <script type="text/javascript">
       let input_name = document.getElementById('name');
       let input_email = document.getElementById('mail');
@@ -287,15 +286,13 @@
       })();
       window.onload = function() {
         document.getElementById('contact-form').addEventListener('submit', function(event) {
-          input_name.value = "";
-          input_email.value = "";
-          input_message.value = "";
-          submit.disabled = true;
+
           event.preventDefault();
           // generate a five digit number for the contact_number variable
           this.contact_number.value = Math.random() * 100000 | 0;
           // these IDs from the previous steps
-          emailjs.sendForm('service_8ci3627', 'template_ewi66qi', this)
+
+          emailjs.sendForm('service_8ci3627', 'template_ewi66qi', document.getElementById('contact-form'))
                   .then(function() {
                     email_send.style.display = "block";
                     submit.disabled = false;
@@ -303,7 +300,12 @@
                   }, function(error) {
                     console.log('FAILED...', error);
                   });
+          input_name.value = "";
+          input_email.value = "";
+          input_message.value = "";
+          submit.disabled = true;
         });
+
       }
     </script>
   </body>
